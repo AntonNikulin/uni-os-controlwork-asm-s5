@@ -11,41 +11,9 @@ int sumArr (int arr[], int len);
 // 6.	Найти сумму элементов массива, меньших 20
 int _tmain(int argc, _TCHAR* argv[])
 {
-	
-	int num[] = {9,10};
-	sumArr(num,2);	
-		
-	return 0;
-}
-
-int sumArr (int arr[], int len){
-	int cnst = 20;
-	int res = 0;
-
-	__asm{
-		mov ecx, len  ;loop counter
-		xor edx,edx
-
-
-LP1:
-		mov ebx, arr
-		mov eax, [ebx]
-		add ebx, 4
-
-		cmp eax, cnst
-		jl SUM		
-
-SUM:
-		add edx, eax
-		dec ecx
-		cmp ecx, 0
-		jg LP1
-
-		mov res, eax
-	}
-}
-
-/*__asm{
+	int num[] = {9,10};	
+/*	
+__asm{
 			lea ebx, num
 			add ebx, 4
 			mov eax,[ebx]
@@ -64,4 +32,39 @@ l1:
 				inc ebx
 				jmp lp
 
-	}*/
+	}
+	*/
+
+	sumArr(num,2);	
+		
+	return 0;
+}
+
+int sumArr (int arr[], int len){
+	int cnst = 20;
+	int res = 0;
+
+	__asm{
+		mov ecx, len	;loop counter
+		xor edx,edx
+		mov ebx, arr
+
+
+LP1:
+		
+		mov eax, [ebx]
+		add ebx, 4		;next arr value
+
+		cmp eax, cnst
+		jl SUM		
+
+SUM:
+		add edx, eax
+		dec ecx		
+		cmp ecx, 0
+		jg LP1
+
+		mov res, edx
+	}
+	return res;
+}
