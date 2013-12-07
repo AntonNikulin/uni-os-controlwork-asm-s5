@@ -19,17 +19,29 @@ int _tmain(int argc, _TCHAR* argv[])
 }
 
 int sumArr (int arr[], int len){
+	int cnst = 20;
+	int res = 0;
+
 	__asm{
 		mov ecx, len  ;loop counter
+		xor edx,edx
 
-	l1:
+
+LP1:
 		mov ebx, arr
 		mov eax, [ebx]
 		add ebx, 4
 
+		cmp eax, cnst
+		jl SUM		
 
-		loop l1
+SUM:
+		add edx, eax
+		dec ecx
+		cmp ecx, 0
+		jg LP1
 
+		mov res, eax
 	}
 }
 
