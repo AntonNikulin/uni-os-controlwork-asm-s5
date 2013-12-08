@@ -5,21 +5,34 @@
 #include "stdio.h"
 #include "iostream"
 #include "string"
+#include <sstream>
 
 using namespace std;
 
 /* function declaration */
 int sumArr (int arr[], int len);
-string int_array_to_string(int int_array[], int size_of_array);
 
+
+///////////////////////////////////////////////////
+//
 // 6.	Найти сумму элементов массива, меньших 20
+//
+/////////////////////////////////////////////////
 int _tmain(int argc, _TCHAR* argv[])
-{
-	int num[] = {1,2,3,4,20,21,111,55,0,-4};
-	cout<<"Input: 1 2 3 4 20 21 111 55 0 -4\nOutput:";
-	cout<<to_string(sumArr(num,10));
-	cin.ignore();
+{	
+	int num[] = {1,2,3,4,20,21,111,55,0,-4, 1}; //test array
 
+	//out
+	std::stringstream ss;
+	int size = sizeof(num)/sizeof(*num);
+	for (int i=0; i<size;i++){
+		ss<<num[i]<<" ";
+	}
+	
+	cout<<"Test array input: "<<ss.str()<<"\t| "<<to_string(size)<<"\nOutput:";
+	cout<<to_string(sumArr(num,size));
+	cin.ignore();
+	
 	return 0;
 }
 
