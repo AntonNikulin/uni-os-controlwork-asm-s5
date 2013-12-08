@@ -8,35 +8,35 @@ len dd 10 ;arr number elem
 cnst dd 20 ;compare to
 res dd 0
 
-codeseg			;init block
-begin :   		mov ecx, [len]        ;loop counter
-                xor edx,edx				;edx to 0
-                mov ebx, offset arr		; move adress of the first element in array to ebx
+codeseg			;init block  	начальные значения регистров
+begin :   		mov ecx, [len]        ;loop counter	 счетчик циклов
+                xor edx,edx				;edx to 0	обнулим 
+                mov ebx, offset arr		; get addres of the first element in array and save it, получить адрес первого эл. массива и записать его
 
 
 
 				
-LP1:			;main loop	
+LP1:			;main loop	главный цикл
                 
-                mov eax, [ebx]  		;arr value to eax
+                mov eax, [ebx]  		;arr value to eax получить значение хранящяеся по адрессу
 
 
-                add ebx, 4                ;get next arr value                
-                dec ecx                		;decrement loop counter
+                add ebx, 4                ;get next arr value   следующий элемент массива
+                dec ecx                		;decrement loop counter уменьшить счетчик цикла
 
 
-                cmp eax, [cnst]			;if array value 
-                jl SUM					;less than variable cnst jump to SUM 
-                jge LP1					;if value greater or equal: next loop iteration
+                cmp eax, [cnst]			;if array value  								если текущее значения массива 
+                jl SUM					;less than variable cnst jump to SUM 			меньше переменной cnst перейти сумированию
+                jge LP1					;if value greater or equal: next loop iteration	если больше: следующий проход цикла
 
 				
-SUM:			;sum array element less than cnst	
-                add edx, eax			;in edx is arr sum, add netxt value to it 
-                cmp ecx, 0				;if number of loop iteration 
-                jg LP1					;greater than 0, start next loop iter
+SUM:			;sum array element less than cnst	сумировать элементы меньше 20 (cnst)
+                add edx, eax			;in edx is arr sum, add netxt value to it прибавить текущее значение массива к общему результату в edx
+                cmp ecx, 0				;if number of loop iteration если это не последний проход цикла
+                jg LP1					;greater than 0, start next loop iter продолжить обход массива
 
 
-                mov [res], edx			;save result in variable res
+                mov [res], edx			;save result in variable res сохранить результат сумирования в res
 		
 		push 0
 		call ExitProcess
