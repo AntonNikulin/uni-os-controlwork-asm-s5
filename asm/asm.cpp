@@ -6,6 +6,7 @@
 #include "iostream"
 #include "string"
 #include <sstream>
+#include <conio.h>
 
 using namespace std;
 
@@ -20,7 +21,7 @@ int sumArr (int arr[], int len);
 /////////////////////////////////////////////////
 int _tmain(int argc, _TCHAR* argv[])
 {	
-	int num[] = {1,2,3,4,20,21,111,55,0,-4, 1}; //test array
+	/*int num[] = {1,2,3,4,20,21,111,55,0,-4, 1}; //test array
 
 	//out
 	std::stringstream ss;
@@ -32,7 +33,28 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout<<"Test array input: "<<ss.str()<<"\t| "<<to_string(size)<<"\nOutput:";
 	cout<<to_string(sumArr(num,size));
 	cin.ignore();
-	
+	*/
+	int size=0;
+	cout<<"Numb";
+	cin>>size;
+	int* array= new int[size];
+	for (int i=0;i<size;i++)
+	{
+		int tmp;
+		cin>>tmp;
+		array[i]=tmp;
+	}
+
+	std::stringstream ss;
+	//int size = sizeof(array)/sizeof(*array);
+	for (int i=0; i<size;i++){
+		ss<<array[i]<<" ";
+	}
+
+	cout<<"Test array input: "<<ss.str()<<"\t| "<<to_string(size)<<"\nOutput:";
+	cout<<to_string(sumArr(array,size));
+	_getch();
+
 	return 0;
 }
 
